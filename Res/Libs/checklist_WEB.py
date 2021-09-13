@@ -73,10 +73,7 @@ class checklist_WEB:
 
     def close_all_browsers(self):
         global driver_list, current_driver_index
-        #print(driver_list)
-        #print(current_driver_index)
         for driver in driver_list[:]:
-            #print(driver)
             driver.close()
             driver_list.remove(driver)
         current_driver_index = -1
@@ -88,7 +85,6 @@ class checklist_WEB:
 
     def get_driver(self, index):
         global driver_list
-        #print(driver_list)
         return driver_list[index]
 
     def get_current_driver(self):
@@ -110,26 +106,48 @@ class checklist_WEB:
     # Action Oriented
 
     def wait_until_visible(self, element, timeout=10):
-        #print("2")
         element_xpath = elements.get_xpath(self, element)
-        #print("2 " + element_xpath)
         element = WebDriverWait(checklist_WEB.get_current_driver(self), timeout).until(
             EC.presence_of_element_located((By.XPATH, element_xpath))
         )
-        #print("2")
         if not turbo_mode:
             checklist_WEB.wait(self,2)
 
     def click(self, element):
-        #print("1")
         checklist_WEB.wait_until_visible(self, element)
-        #print("1")
         elementToClick = elements.get_xpath(self, element)
-        print("1")
         checklist_WEB.get_current_driver(self).find_element_by_xpath(elementToClick).click()
         if not turbo_mode:
             checklist_WEB.wait(self,2)
-
+            
+    def double_click(self, element):
+        checklist_WEB.wait_until_visible(self, element)        
+        actionChains = ActionChains(checklist_WEB.get_current_driver(self))
+        actionChains.double_click(checklist_WEB.get_current_driver(self).find_element_by_xpath(elementToClick)).perform()
+        if not turbo_mode:
+            checklist_WEB.wait(self,2)
+            
+    def click_and_hold(self, element):
+        checklist_WEB.wait_until_visible(self, element)        
+        actionChains = ActionChains(checklist_WEB.get_current_driver(self))
+        actionChains.click_and_hold(checklist_WEB.get_current_driver(self).find_element_by_xpath(elementToClick)).perform()
+        if not turbo_mode:
+            checklist_WEB.wait(self,2)
+  
+    def drag_and_drop(self, element, target):
+        checklist_WEB.wait_until_visible(self, element)        
+        actionChains = ActionChains(checklist_WEB.get_current_driver(self))
+        actionChains.drag_and_drop(checklist_WEB.get_current_driver(self).find_element_by_xpath(elementToClick), checklist_WEB.get_current_driver(self).find_element_by_xpath(target)).perform()
+        if not turbo_mode:
+            checklist_WEB.wait(self,2)
+            
+    def drag_and_drop_by_offset(self, element, x, y):
+        checklist_WEB.wait_until_visible(self, element)        
+        actionChains = ActionChains(checklist_WEB.get_current_driver(self))
+        actionChains.drag_and_drop(checklist_WEB.get_current_driver(self).find_element_by_xpath(elementToClick), x, y).perform()
+        if not turbo_mode:
+            checklist_WEB.wait(self,2)
+            
     def input_text_into(self, element, text, clearfirst=False):
         checklist_WEB.wait_until_visible(self, element)
         elementToClick = elements.get_xpath(self, element)
@@ -186,16 +204,10 @@ class checklist_WEB:
             checklist_WEB.wait(self,2)
 
     def check_attribute(self, element, property, expected_value, contains=False, respectCapitalLetters=True):
-        print("1")
         driver = checklist_WEB.get_current_driver(self)
-        print("1")
         elementToClick = elements.get_xpath(self, element)
-        print("1")
         elements_list = checklist_WEB.get_current_driver(self).find_elements_by_xpath(elementToClick)
-        #print(val==expected_value)
-        print("1")
         for item in elements_list:
-            print(item)
             val = item.get_attribute(property)
             if contains and not respectCapitalLetters:
                 assert (expected_value.lower() in val.lower())==True, "AssertionError: Expected value ('" + expected_value + "') is not contained in actual value ('" + val + "') to attribute: '" + property + "'"
