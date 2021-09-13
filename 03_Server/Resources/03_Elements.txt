@@ -1,0 +1,35 @@
+#### PythonScreen
+Python_TopMenuBarItem			//div[@id='top']//a[text()='Python']
+PSF_TopMenuBarItem			//div[@id='top']//a[text()='PSF']
+Docs_TopMenuBarItem			//div[@id='top']//a[text()='Docs']
+PyPI_TopMenuBarItem			//div[@id='top']//a[text()='PyPI']
+Jobs_TopMenuBarItem			//div[@id='top']//a[text()='Jobs']
+Community_TopMenuBarItem		//div[@id='top']//a[text()='Community']
+PythonLogo_Image			//img[@class='python-logo']
+SearchTextField_Input		//input[@class='search-field']
+GoSearch_Button				//button[@class='search-button']
+-----
+SearchPython_Text			//section[@class="main-content "]//h2
+SearchInput_Input			//section[@class="main-content "]//input[@type="text"]
+SearchButton_Button			//section[@class="main-content "]//input[@type="submit"]
+ResultsTitle_Text			//section[@class="main-content "]//h3[text()="Results"]
+ResultsContainer_Container	//section[@class="main-content "]//ul[@class="list-recent-events menu"]
+ResultsElements_Container			//section[@class="main-content "]//ul[@class="list-recent-events menu"]//li
+ResultsElementsTitles_Container		//section[@class="main-content "]//ul[@class="list-recent-events menu"]//li//h3
+ResultsElementsDescription_Container	//section[@class="main-content "]//ul[@class="list-recent-events menu"]//li//p
+
+#### PSFScreen
+PSFLogo_Image				//img[@class='psf-logo']
+
+#### DocsScreen
+PythonDoc_TitleText			//div[@class='body']//h1[text()='Python 3.9.1 documentation']
+PythonTopLinkTree_Link			//div[@class='related' and @role='navigation' and @aria-label='related navigation'][1]//a[text()='Python']
+
+#### PyPIScreen
+PythonHeaderLogo_Image			//a[@class="site-header__logo"]
+
+#### JobsScreen
+PythonJobBoardNumber_TitleText	//h1[@class="call-to-action"]
+
+#### CommunityScreen
+ThePythonCommunity_SubTitleText	//div[@id='the-python-community']

@@ -1,0 +1,22 @@
+Request:
+
+url: http://www.dneonline.com/calculator.asmx
+
+headers: {'content-type': 'text/xml; charset=utf-8'}
+
+body:
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <Divide xmlns="http://tempuri.org/">
+      <intA>5</intA>
+      <intB>5</intB>
+    </Divide>
+  </soap:Body>
+</soap:Envelope>
+
+
+Response:
+
+body:
+<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><DivideResponse xmlns="http://tempuri.org/"><DivideResult>1</DivideResult></DivideResponse></soap:Body></soap:Envelope>
